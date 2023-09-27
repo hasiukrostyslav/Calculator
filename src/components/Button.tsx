@@ -13,7 +13,7 @@ function Button({ type, large, children }: Props) {
   const styles = {
     primary: `${base} text-primary-950 bg-primary-400 border-primary-400 justify-center text-[28px]`,
     digit: `${base} text-primary-400 bg-primary-700 border-primary-700 last:mt-3.5 ${
-      large ? "mt-3.5 w-36 px-6 text-left" : "justify-center"
+      large ? "mt-3.5 w-36 px-5 text-left" : "justify-center"
     }`,
     math: `${base} justify-center text-primary-100 bg-accent border-accent first:mb-1.5 last:mt-3.5`,
   };

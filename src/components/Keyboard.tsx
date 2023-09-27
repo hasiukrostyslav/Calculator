@@ -37,7 +37,7 @@ function Keyboard() {
               {btn}
             </Button>
           ))}
-          <Button type="digit">.</Button>
+          <Button type="digit">,</Button>
         </div>
       </div>
 
