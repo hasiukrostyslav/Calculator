@@ -1,22 +1,35 @@
 // prettier-ignore
 import { RiAddFill, RiSubtractFill, RiDivideFill, RiCloseFill, RiEqualFill} from "react-icons/ri";
 import Button from "./Button";
+import { useAppDispatch } from "../hooks";
+import { BUTTONS } from "../data";
+
+type MathTypes = "divide" | "multiply" | "subtract" | "add" | "equal";
 
 function MathOperatorButtons() {
-  const mathType = [
-    { icon: <RiDivideFill key={"divide"} />, type: "divide" },
-    { icon: <RiCloseFill key={"multiple"} />, type: "multiple" },
-    { icon: <RiSubtractFill key={"subtract"} />, type: "subtract" },
-    { icon: <RiAddFill key={"add"} />, type: "add" },
-    { icon: <RiEqualFill key={"equal"} />, type: "equal" },
-  ];
+  const dispatch = useAppDispatch();
+
+  function handleMathOperator(type: MathTypes) {
+    dispatch({ type: `calculator/${type}`, payload: type });
+  }
+
   return (
     <>
-      {mathType.map((btn) => (
-        <Button id={btn.type} key={btn.type} type="math">
-          {btn.icon}
-        </Button>
-      ))}
+      <Button type="math" onClick={() => handleMathOperator("divide")}>
+        <RiDivideFill />
+      </Button>
+      <Button type="math" onClick={() => handleMathOperator("multiply")}>
+        <RiCloseFill />
+      </Button>
+      <Button type="math" onClick={() => handleMathOperator("subtract")}>
+        <RiSubtractFill />
+      </Button>
+      <Button type="math" onClick={() => handleMathOperator("add")}>
+        <RiAddFill />
+      </Button>
+      <Button type="math" onClick={() => handleMathOperator("equal")}>
+        <RiEqualFill />
+      </Button>
     </>
   );
 }

@@ -5,9 +5,10 @@ interface ButtonProps {
   type: "primary" | "digit" | "math";
   id?: string | number;
   large?: boolean;
+  onClick?: () => void;
 }
 
-function Button({ type, large, children }: ButtonProps) {
+function Button({ type, large, onClick, children }: ButtonProps) {
   const base = `h-[60px] rounded-full  border border-solid text-3xl font-medium hover:opacity-90 active:opacity-80 flex items-center hover:transition-all`;
 
   const styles = {
@@ -18,6 +19,10 @@ function Button({ type, large, children }: ButtonProps) {
     math: `${base} justify-center text-primary-100 bg-accent border-accent first:mb-1.5 last:mt-3.5 w-[62px]`,
   };
 
-  return <button className={styles[type]}>{children}</button>;
+  return (
+    <button onClick={onClick} className={styles[type]}>
+      {children}
+    </button>
+  );
 }
 export default Button;
