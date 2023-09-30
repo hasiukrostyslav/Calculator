@@ -3,7 +3,8 @@ import { DarkModeProps } from "../types";
 import ToggleButton from "./ToggleButton";
 
 function Screen({ darkMode, onClick }: DarkModeProps) {
-  const { currentValue, prevValue } = useAppSelector((state) => state);
+  const currentValue = useAppSelector((state) => state.currentValue);
+  const prevValue = useAppSelector((state) => state.prevValue);
 
   return (
     <div

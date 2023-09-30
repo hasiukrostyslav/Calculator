@@ -20,6 +20,10 @@ function Keyboard() {
     dispatch({ type: "calculator/percent" });
   }
 
+  function handleDecimalPoint() {
+    dispatch({ type: "calculator/decimalPoint" });
+  }
+
   return (
     <section className="flex gap-x-5 px-9 pb-10 pt-8">
       <div className="flex flex-col gap-y-[22px]">
@@ -37,7 +41,9 @@ function Keyboard() {
 
         <div className="flex flex-wrap gap-x-5 gap-y-4">
           <DigitButtons />
-          <Button type="digit">,</Button>
+          <Button onClick={() => handleDecimalPoint()} type="digit">
+            ,
+          </Button>
         </div>
       </div>
 
