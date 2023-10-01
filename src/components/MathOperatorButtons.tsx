@@ -2,7 +2,6 @@
 import { RiAddFill, RiSubtractFill, RiDivideFill, RiCloseFill, RiEqualFill} from "react-icons/ri";
 import Button from "./Button";
 import { useAppDispatch } from "../hooks";
-import { BUTTONS } from "../data";
 
 type MathTypes = "divide" | "multiply" | "subtract" | "add" | "equal";
 
