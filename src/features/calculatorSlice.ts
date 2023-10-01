@@ -34,16 +34,16 @@ export default function calculatorReducer(
     case "calculator/selectDigit":
       return {
         ...state,
+        percent: false,
         mathOperator:
           state.mathOperator === "equal" ? null : state.mathOperator,
+
         currentValue:
           state.currentValue === 0 ||
           state.mathOperator === "equal" ||
-          state.percent ||
-          (state.percent && state.decimalPoint)
+          state.percent
             ? action.payload
             : Number(state.currentValue.toString() + action.payload),
-        percent: false,
 
         decimalPoint:
           (state.mathOperator ?? state.percent) &&
@@ -56,16 +56,11 @@ export default function calculatorReducer(
       return {
         ...state,
         mathOperator: action.payload,
-        prevValue:
-          state.prevValue === null
-            ? state.currentValue
-            : state.mathOperator === "add"
-            ? state.prevValue + state.currentValue
-            : state.mathOperator === "subtract"
-            ? state.prevValue - state.currentValue
-            : state.mathOperator === "multiply"
-            ? state.prevValue * state.currentValue
-            : state.prevValue / state.currentValue,
+        prevValue: mathOperations(
+          state.currentValue,
+          state.prevValue,
+          state.mathOperator,
+        ),
         currentValue: 0,
         percent: false,
       };
@@ -74,16 +69,11 @@ export default function calculatorReducer(
       return {
         ...state,
         mathOperator: action.payload,
-        prevValue:
-          state.prevValue === null
-            ? state.currentValue
-            : state.mathOperator === "add"
-            ? state.prevValue + state.currentValue
-            : state.mathOperator === "subtract"
-            ? state.prevValue - state.currentValue
-            : state.mathOperator === "multiply"
-            ? state.prevValue * state.currentValue
-            : state.prevValue / state.currentValue,
+        prevValue: mathOperations(
+          state.currentValue,
+          state.prevValue,
+          state.mathOperator,
+        ),
         currentValue: 0,
         percent: false,
       };
@@ -92,16 +82,11 @@ export default function calculatorReducer(
       return {
         ...state,
         mathOperator: action.payload,
-        prevValue:
-          state.prevValue === null
-            ? state.currentValue
-            : state.mathOperator === "add"
-            ? state.prevValue + state.currentValue
-            : state.mathOperator === "subtract"
-            ? state.prevValue - state.currentValue
-            : state.mathOperator === "multiply"
-            ? state.prevValue * state.currentValue
-            : state.prevValue / state.currentValue,
+        prevValue: mathOperations(
+          state.currentValue,
+          state.prevValue,
+          state.mathOperator,
+        ),
         currentValue: 0,
         percent: false,
       };
@@ -110,16 +95,11 @@ export default function calculatorReducer(
       return {
         ...state,
         mathOperator: action.payload,
-        prevValue:
-          state.prevValue === null
-            ? state.currentValue
-            : state.mathOperator === "add"
-            ? state.prevValue + state.currentValue
-            : state.mathOperator === "subtract"
-            ? state.prevValue - state.currentValue
-            : state.mathOperator === "multiply"
-            ? state.prevValue * state.currentValue
-            : state.prevValue / state.currentValue,
+        prevValue: mathOperations(
+          state.currentValue,
+          state.prevValue,
+          state.mathOperator,
+        ),
         currentValue: 0,
         percent: false,
       };
@@ -208,7 +188,7 @@ function mathOperations(
   return curValue;
 }
 
-function isDecimal(num: number, percent = false): boolean {
+export function isDecimal(num: number, percent = false): boolean {
   if (percent)
     return Number.isFinite(num / 100) && !Number.isInteger(num / 100);
 
