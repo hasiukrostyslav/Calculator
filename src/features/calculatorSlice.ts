@@ -128,6 +128,7 @@ export default function calculatorReducer(
 
     case "calculator/decimalPoint": {
       if (state.decimalPoint && state.mathOperator !== "equal") return state;
+
       if (state.mathOperator === "equal")
         return {
           ...state,
@@ -135,6 +136,7 @@ export default function calculatorReducer(
           mathOperator: false,
           currentValue: (0).toFixed(1).slice(0, -1),
         };
+
       return {
         ...state,
         decimalPoint: true,
